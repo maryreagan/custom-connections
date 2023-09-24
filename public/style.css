@@ -1,0 +1,47 @@
+:root {
+    --yellow: #f9df6d;
+    --green: #a0c35a;
+    --blue: #b0c4ef;
+    --purple: #ba81c5;
+    --main-game-color: #b4a8ff;
+    --selected-color: #5a594e;
+    --incorrect-color: #5a594ebf;
+    --light-grey: #d4d4d4;
+    --grey: #e2e2e2;
+    --ui-grey: #7f7f7f;
+    --item-grey: #efefe6;
+    --top-section-desktop-height: 233.5px;
+    --top-section-mobile-height: 46px;
+    --contrast-yellow: #f9df6d;
+    --contrast-green: #a0c35a;
+    --contrast-blue: #b0c4ef;
+    --contrast-purple: #ba81c5;
+    --group-0-color: var(--yellow);
+    --group-1-color: var(--green);
+    --group-2-color: var(--blue);
+    --group-3-color: var(--purple);
+}
+body{
+    justify-content: center;
+        align-items: center;
+}
+@media (min-width: 768px){
+    .game-container{
+        width: 50%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(100px, 175px));
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        gap: .5rem;
+    }
+}
+.text-box{
+        background-color: var(--item-grey);
+        border-radius: .9em;
+        padding: 2rem 1rem 2rem 1rem;
+        text-align: center;
+}
+.clicked{
+    background-color: var(--selected-color);
+}
