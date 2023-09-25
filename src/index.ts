@@ -1,3 +1,4 @@
+let gameContainer = document.querySelector<HTMLDivElement>(".game-container")
 let newClass = document.querySelectorAll<HTMLDivElement>(".text-box")
 let wordForm = document.getElementById("new-word-form") as HTMLFormElement | null
 let title = document.getElementById("title") as HTMLInputElement | null
@@ -10,7 +11,7 @@ type Word = {
   clicked: boolean
 }
 let currentWords: Word[] = []
-
+let clickedWords: number = 0
 wordForm?.addEventListener("submit", e => {
   e.preventDefault()
   if (title?.value == "" || title?.value == null) return;
@@ -26,37 +27,52 @@ wordForm?.addEventListener("submit", e => {
   title.value = ""
   category.value = ""
   difficulty.value = ""
-  populate()
+    populate(newWord)
 })
-function populate(){
-  if(currentWords.length >= 16){
-    newClass.forEach((item) => {
-      let randomIndex = getRandomNumber(1, currentWords.length) - 1
-      console.log(randomIndex, currentWords.length)
-      console.log(currentWords[randomIndex].title)
-      item.textContent = currentWords[randomIndex].title
-      // let itemWord = currentWords[randomIndex]
-      currentWords.splice(randomIndex, 1)
-      item.addEventListener("click", () => {
-        item.classList.add("clicked")
-      })
-    })
+newClass.forEach((item) => {
+  item.addEventListener("click", e => {
+    if(item.classList.contains("clicked")){
+      item.classList.remove("clicked")
+      clickedWords -= 1
+  } else if(clickedWords < 4){
+    item.classList.add("clicked")
+    clickedWords += 1
   }
+  })
+  item.addEventListener("contextmenu", e => {
+    e.preventDefault()
+    console.log("right clicked")
+  })
+})
 
-}
 function getRandomNumber(min: number, max: number) {
   // Generate a random decimal between 0 and 1
   const randomDecimal = Math.random();
-  console.log(randomDecimal)
   // Scale the random decimal to the desired range
   const randomInRange = randomDecimal * (max - min + 1) + min;
   // Round down to the nearest whole number
   const randomInteger = Math.floor(randomInRange);
-  console.log(randomInteger)
   return randomInteger;
 }
 
-
+function populate(item: Word){
+if(currentWords.length > 16){
+  window.alert("Cannot add more than 16 words")
+} else {
+  let randomIndex = getRandomNumber(0, 15)
+  let itemPlaced: boolean = false
+  while(itemPlaced == false){
+    randomIndex = getRandomNumber(0, 15)
+    let currentElement: HTMLDivElement = newClass[randomIndex]
+    if(currentElement.innerHTML.length < 1){
+      currentElement.textContent = item.title
+      currentElement.setAttribute("category", item.category)
+      currentElement.setAttribute("difficulty", item.difficulty)
+      itemPlaced = true
+    }
+  }
+}
+}
 
 
 
