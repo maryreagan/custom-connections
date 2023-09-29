@@ -1,3 +1,5 @@
+let body = document.querySelector<HTMLBodyElement>("body")
+let rightClickMenu = document.querySelector(".right-click-menu") as HTMLDivElement | null
 let gameContainer = document.querySelector<HTMLDivElement>(".game-container")
 let newClass = document.querySelectorAll<HTMLDivElement>(".text-box")
 let wordForm = document.getElementById("new-word-form") as HTMLFormElement | null
@@ -38,11 +40,26 @@ newClass.forEach((item) => {
     item.classList.add("clicked")
     clickedWords += 1
   }
-  })
+})
+})
+newClass.forEach((item) => {
   item.addEventListener("contextmenu", e => {
     e.preventDefault()
-    console.log("right clicked")
+    console.log("clicked")
+    const mouseX = e.clientX
+    const mouseY = e.clientY
+    console.log(mouseX, mouseY)
+    if (rightClickMenu == null) return
+      rightClickMenu.style.top = `${mouseY}px`
+      rightClickMenu.style.left = `${mouseX}px`
+      rightClickMenu.classList.add("visible")
+  
   })
+})
+body?.addEventListener("click", e => {
+  if((e.target as HTMLElement).offsetParent != rightClickMenu){
+    rightClickMenu?.classList.remove("visible")
+  }
 })
 
 function getRandomNumber(min: number, max: number) {
