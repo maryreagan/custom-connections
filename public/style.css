@@ -1,3 +1,5 @@
+/* Grabbed from NYT Connections site */
+/* Styling should look the same as https://www.nytimes.com/games/connections */
 :root {
     --yellow: #f9df6d;
     --green: #a0c35a;
@@ -21,12 +23,15 @@
     --group-2-color: var(--blue);
     --group-3-color: var(--purple);
 }
+
 body{
-    justify-content: center;
+        justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
+        border: 2px solid black;
 }
+
 @media (min-width: 768px){
     .game-container{
         width: 50%;
@@ -38,26 +43,37 @@ body{
         gap: .5rem;
     }
 }
+/* Boxes of words */
 .text-box{
         background-color: var(--item-grey);
         border-radius: .9em;
-        padding: 2rem 1rem 2rem 1rem;
+        height: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
+
 }
+/* When a word box is selected */
 .clicked{
     background-color: var(--selected-color);
 }
+/* Update and Delete context menu on right click */
 .right-click-menu{
     position: fixed;
     z-index: 10000;
     width: 150px;
     background: lightgrey;
     border-radius: 5px;
-    display: none;
+    transform: scale(0);
+    transform-origin: top left;
 }
+/* Once right click menu is opened */
 .right-click-menu.visible{
-    display: block !important;
+    transform: scale(1);
+    transition: transform 100ms ease-in-out;
 }
+/* Options in right click menu (update and delete */
 .right-click-option{
     padding: 8px 10px;
     font-size: 15px;
@@ -65,6 +81,16 @@ body{
     cursor: pointer;
     border-radius: inherit;
 }
+/* Hover over right click menu options */
 .right-click-option:hover{
 background: #343434;
 }
+/* Form to add new words */
+#new-word-form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
