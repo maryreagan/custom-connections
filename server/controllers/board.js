@@ -23,4 +23,10 @@ router.get("/:id", async (req, res) => {
     }
 })
 
+// Create a board
+
+// Update a board
+
+// Delete a board
+
 module.exports = router;
