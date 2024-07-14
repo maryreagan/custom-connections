@@ -1,24 +1,50 @@
-# New Project
+# Project Title
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+Fun project inspired by NYT Connections. I love playing connections every morning and wanted to share a custom made board with friends!
 
-## Available Scripts
 
-### npm start
+## Installation
+Instructions for how to install and set up this project:
+```bash
+git clone https://github.com/maryreagan/custom-connections.git
+cd custom-connections
+npm install
+```
+## Environment Configuration
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+### Why You Need It
+The .env file is used to store environment variables that are needed for your application to run. This includes things like database credentials, API keys, and other configuration settings that should not be hardcoded in your source code.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+### Setting Up the .env File
+Create a .env file in the root directory of your project.
+Add the necessary environment variables. Here’s an example of what your .env file might look like:
+```env
+PORT = yourportnumber
+MONGO_URL = yourmongourl
+SALT = yoursaltnumber
+JWT_SECRET_KEY = yoursecretkey
+```
 
-### npm run build
+Ensure that your .env file is included in your .gitignore file to prevent it from being committed to your repository.
+## Example .env File
+Here’s an example .env file for a typical project:
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+```env
+# Server configuration
+PORT=3000
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.mjs` config file.
+# Database configuration
+MONGO_URL=mongodb://localhost:27017/yourdatabase
 
-### Q: What about Eject?
+# Security configuration
+SALT=10
+JWT_SECRET_KEY=yourverysecretkey
+```
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+## Usage
+
+In your terminal, navigate to `server` and use `npm run dev`
+
+In your terminal, navigate to `client` and use `npm start` 
+
+Navigate to `http://localhost:3000` in your web browser

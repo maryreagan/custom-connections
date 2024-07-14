@@ -34,7 +34,7 @@ body{
 
 @media (min-width: 768px){
     .game-container{
-        width: 50%;
+        width: 42%;
         display: grid;
         grid-template-columns: repeat(4, minmax(100px, 175px));
         justify-content: center;
@@ -46,17 +46,21 @@ body{
 /* Boxes of words */
 .text-box{
         background-color: var(--item-grey);
-        border-radius: .9em;
+        border-radius: .3em;
         height: 5rem;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-weight: 900;
+        font-size: 1.2rem;
+        font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
 
 }
 /* When a word box is selected */
 .clicked{
     background-color: var(--selected-color);
+    color: white;
 }
 /* Update and Delete context menu on right click */
 .right-click-menu{

@@ -12,8 +12,12 @@ let category = document.getElementById("category") as HTMLInputElement | null;
 let difficulty = document.getElementById(
     "difficulty"
 ) as HTMLInputElement | null;
-let updateWord = document.getElementById("update-word") as HTMLDivElement | null;
-let deleteWord = document.getElementById("delete-word") as HTMLDivElement | null;
+let updateWord = document.getElementById(
+    "update-word"
+) as HTMLDivElement | null;
+let deleteWord = document.getElementById(
+    "delete-word"
+) as HTMLDivElement | null;
 // type for word
 type Word = {
     title: string;
@@ -31,9 +35,9 @@ wordForm?.addEventListener("submit", (e) => {
     if (category?.value == "" || category?.value == null) return;
     if (difficulty?.value == "" || difficulty?.value == null) return;
     const newWord: Word = {
-        title: title.value,
-        category: category.value,
-        difficulty: difficulty.value,
+        title: title.value.toUpperCase(),
+        category: category.value.toUpperCase(),
+        difficulty: difficulty.value.toUpperCase(),
     };
     currentWords.push(newWord);
     title.value = "";
@@ -57,12 +61,11 @@ newClass.forEach((item) => {
     item.addEventListener("contextmenu", (e) => {
         e.preventDefault();
         document.querySelectorAll(".right-clicked").forEach((item) => {
-          item.classList.remove("right-clicked");
-      } );
+            item.classList.remove("right-clicked");
+        });
         item.classList.add("right-clicked");
         const mouseX = e.clientX;
         const mouseY = e.clientY;
-        console.log(mouseX, mouseY);
         if (rightClickMenu == null) return;
         rightClickMenu.style.top = `${mouseY}px`;
         rightClickMenu.style.left = `${mouseX}px`;
@@ -73,37 +76,58 @@ newClass.forEach((item) => {
         });
     });
 });
-//Updates words and keeps within same element 
+//Updates words and keeps within same element
 updateWord?.addEventListener("click", (e) => {
     rightClickMenu?.classList.remove("visible");
-    let clickedItems = document.querySelectorAll<HTMLDivElement>(".right-clicked")
+    let clickedItems =
+        document.querySelectorAll<HTMLDivElement>(".right-clicked");
     clickedItems.forEach((item) => {
-      let newTitle = window.prompt("Enter new title")
-      let newCategory = window.prompt("Enter new category")
-      let newDifficulty = window.prompt("Enter new difficulty")
-      //Update in currentWords array
-      let index = currentWords.findIndex((word) => word.title === item.textContent)
-      if (newTitle !== null) {
-        currentWords[index].title = newTitle
-      }
-      if (newCategory !== null) {
-        currentWords[index].category = newCategory
-      }
-      if (newDifficulty !== null) {
-        currentWords[index].difficulty = newDifficulty
-      }
-      console.log(currentWords)
-      if (newTitle !== null) {
-        item.textContent = newTitle
-      }
-      if (newCategory !== null) {
-        item.setAttribute("category", newCategory)
-      }
-      if (newDifficulty !== null) {
-        item.setAttribute("difficulty", newDifficulty)
-      }
-      item.classList.remove("right-clicked")
-    })
+        let newTitle = window.prompt("Enter new title");
+        let newCategory = window.prompt("Enter new category");
+        let newDifficulty = window.prompt("Enter new difficulty");
+        //Update in currentWords array
+        let index = currentWords.findIndex(
+            (word) => word.title === item.textContent
+        );
+        if (newTitle !== null) {
+            currentWords[index].title = newTitle.toUpperCase();
+        }
+        if (newCategory !== null) {
+            currentWords[index].category = newCategory.toUpperCase();
+        }
+        if (newDifficulty !== null) {
+            currentWords[index].difficulty = newDifficulty.toUpperCase();
+        }
+
+        //Updating element
+        if (newTitle !== null) {
+            item.textContent = newTitle.toUpperCase();
+        }
+        if (newCategory !== null) {
+            item.setAttribute("category", newCategory.toUpperCase());
+        }
+        if (newDifficulty !== null) {
+            item.setAttribute("difficulty", newDifficulty.toUpperCase());
+        }
+        item.classList.remove("right-clicked");
+    });
+});
+
+//Deletes words
+deleteWord?.addEventListener("click", (e) => {
+    rightClickMenu?.classList.remove("visible");
+    let clickedItems =
+        document.querySelectorAll<HTMLDivElement>(".right-clicked");
+    clickedItems.forEach((item) => {
+        let index = currentWords.findIndex(
+            (word) => word.title === item.textContent
+        );
+        currentWords.splice(index, 1);
+        item.textContent = "";
+        item.removeAttribute("category");
+        item.removeAttribute("difficulty");
+        item.classList.remove("right-clicked");
+    });
 });
 
 body?.addEventListener("click", (e) => {
@@ -112,7 +136,7 @@ body?.addEventListener("click", (e) => {
         rightClickMenu?.classList.remove("visible");
         document.querySelectorAll(".right-clicked").forEach((item) => {
             item.classList.remove("right-clicked");
-        } );
+        });
     }
 });
 
