@@ -1,6 +1,7 @@
 # Project Title
 
 Fun project inspired by NYT Connections. I love playing connections every morning and wanted to share a custom made board with friends!
+If you'd like to see my current plans for this project check [here!](https://docs.google.com/document/d/1C8kalviR67BXKeRDRLSyyKdGYiF2HUjc92TXtbJWiio/edit?usp=sharing)
 
 
 ## Installation
